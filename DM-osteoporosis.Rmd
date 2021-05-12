@@ -1,0 +1,85 @@
+---
+title: "Sample Size Calculation"
+author: "Kadek Adit Wiryadana"
+date: "5/12/2021"
+output:
+  pdf_document: default
+  html_document: default
+bibliography: reference.bib
+---
+
+# Perkiraan Jumlah Sampel
+Penelitian membutuhkan jumlah sampel minimal. Hal ini diperlukan karena dibutuhkan jumlah data point tertentu  untuk mencapai sensitifitas suatu tes statistik dalam menguji sebuah hipotesis. Sensitivitas suatu tes statistik itu dinyatakan dalam 2 parameter, yakni alfa dan beta.
+
+## Parameter Penting
+### Alfa
+Alfa adalah tingkat kesalahan tipe I (mendeteksi adanya perbedaan dari sampel yang kita kumpulkan, yang sebenarnya tidak terdapat perbedaan pada populasi). Pada umumnya alfa digunakan 0,05 atau 5%, maknanya kasarnya adalah jika memang sampel diambil dari populasi yang seragam, maka jika ada perbedaan di analisis sampel kita, kemungkinannya hanya kurang dari atau sama dengan 5/100 kali percobaan. Nilai Alfa ini yang sering dipakai sebagai batas signifikansi penelitian pada umumnya (alfa < 0,05). Jadi alfa ~ batas signifikansi.
+
+### Beta
+Beta adalah tingkat kesalahan tipe II (tidak mampu mendeteksi perbedaan dari sampel yang kita kumpulkan, padahal pada populasi terdapat perbedaan signifikan). Nah parameter ini jarang disebutkan di jurnal, padahal ini yang berpengaruh cukup besar menentukan jumlah sampel. Kenapa beta itu penting, karena pada dasarnya kita melakukan penelitian dan uji statistik adalah untuk mengetahui apakah terdapat perbedaan pada variabel yang kita teliti (tinggi badan pada perempuan vs laki-laki) di populasi melalui sampel yang kita ambil. Jika kita melakukan penelitian tapi penelitian dan tes statistik kita "tidak mampu mendeteksi perbedaan dari sampel yang kita kumpulkan, padahal pada populasi terdapat perbedaan signifikan" maka percuma kita melakukan penelitian.
+
+Pada umunya beta dipatok pada 0,2 atau 20%. Ada parameter 1-beta yang disebut POWER, atau power of the study, nah ini adalah sensitifitas penelitian kita. Pada umumny Power penelitian ditetapkan 80% (1-0,2).
+
+## Perkiraan Sampel yang Dibutuhkan
+Perkiraan jumlah sampel akan menggunakan rumus matematika. Rumus bervariasi antar jenis penelitian, tetapi intinya akan melibatkan parameter alfa, beta, dan efek size. Efek size itu adalah perkiraan besar perbedaan yang coba kita deteksi.
+
+Rumus matematika penentuan jumlah sampl itu rumit, maka dengan tujuan untuk perkiraan maka disini kita tentukan dengan bahasa pemrograman statistik yang disebut dengan R. @r_core_team_r_2021 Berikut masing-masing perhitungan berdasarkan masing-masing pertanyaan penelitian
+
+### Hubungan DM dengan Osteoporosis
+Judul ini yang awal diajukan, jika seperti ini maka kita akan melihat proporsi adanya osteoporosis pada pasien DM dengan non DM. Osteoporosis (sebagai variabel kategori) didefisnisikan sebagai nilai BMD pasien kurang dari rerata nilai BMD orang dewasa muda, dengan jenis kelamin yang sama hingga dibawah dari nilai 2,5 Standar deviasi, atau disebut dengan T-score <-2,5 SD. Desain penelitian yang digunakan adalah cross-sectional (ataupun case control rumusnya akan mirip).
+
+* DM = variabel kategori
+* Osteoporosis =variabel kategori
+* tes yang akan digunakan Chi-square, Odd ratio, atau prevalence ratio.
+
+### Kode
+* Power = 80%
+* Alfa = 5%
+* P1 = 45% (Perkiraan proporsi Osteoporosis pada penderita DM di populasi, ini diperkirakan dengan melihat hasil penelitian terdahulu yang sama atau mirip). @prakash_prevalence_2017
+* P2 = 20% (Perkiraan proporsi Osteoporosis pada penderita non-DM di populasi, ini diperkirakan dengan pendapat klinis peneliti). @chen_prevalence_2016
+```{r}
+A <- power.prop.test(power = 0.80, p1=0.45 , p2=0.2 , sig.level = 0.05)
+A
+```
+
+Berdasarkan hasil perhitungan maka jumlah sampel yang dibutuhkan adalah 2 X `r A$n` ~ `r 2*round(A$n,0)`.
+
+### Hubungan DM dengan nilai BMD dan TBS
+Penelitian akan membandingkan nilai BMD dan TBS pada pasien DM dan non DM. 
+
+* DM = variabel kategori
+* TBS dan BMD = variabel numerik
+* Tes yang digunakan adalah T-test independen atau mann-whitney.
+
+### Kode
+* Power = 80%
+* Alfa = 5%
+* Delta = Perbedaan minimal yang kita anggap signifikan (secara klinis)
+* SD = standar deviasi dari nilai variabel di populasi (kita perkirakan dari hasil penelitian sebelumnya)
+
+
+#### Jika pakai **BMD** sebagai variabel utama.
+* Delta = 0.2
+* SD = 0,172. @dhaliwal_bone_2014
+```{r}
+B <-power.t.test(power = 0.80, sig.level = 0.05, sd=0.172 , delta=0.2)
+B
+```
+Berdasarkan hasil perhitungan maka jumlah sampel yang dibutuhkan adalah 2 X `r B$n` ~ `r 2*round(B$n,0)`.
+
+
+#### Jika pakai **TBS** sebagai variabel utama
+* Delta = 0.2
+* SD = 0,14. @dhaliwal_bone_2014
+```{r}
+C <-power.t.test(power = 0.80, sig.level = 0.05, sd=0.14 , delta=0.2)
+C
+```
+Berdasarkan hasil perhitungan maka jumlah sampel yang dibutuhkan adalah 2 X `r C$n` ~ `r 2*round(C$n,0)`.
+
+---
+
+
+
+
+

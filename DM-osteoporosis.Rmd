@@ -3,7 +3,6 @@ title: "Sample Size Calculation"
 author: "Kadek Adit Wiryadana"
 date: "5/12/2021"
 output:
-  pdf_document: default
   html_document: default
 bibliography: reference.bib
 ---
@@ -76,6 +75,9 @@ C <-power.t.test(power = 0.80, sig.level = 0.05, sd=0.14 , delta=0.2)
 C
 ```
 Berdasarkan hasil perhitungan maka jumlah sampel yang dibutuhkan adalah 2 X `r C$n` ~ `r 2*round(C$n,0)`.
+
+## Kesimpulan
+Akan lebih efektif jika menggunakan hipotesis apakah terdapat hubungan antara DM dengan BMD dan TBS>
 
 ---
 

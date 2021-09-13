@@ -1,0 +1,88 @@
+---
+title: "Struktur Bab IV"
+author: "Kadek Adit Wiryadana"
+date: "5/16/2021"
+output: html_document
+---
+
+# BAB IV - METODE PENELITIAN
+
+---
+
+## Rancangan Penelitian 
+### Penelitian ini menggunakan rancangan potong lintang (cross-sectional).
+
+## Tempat dan Waktu Penelitian
+### Tempat: Poliklinik *Diabetic Center* RSUP Sanglah Denpasar.
+### Waktu: Bulan X - Y 2021
+
+## Populasi dan Sampel Penelitian
+### Populasi Target
+Pasien usia 40 - 59 tahun dengan diabetes melitus tipe II. 
+
+### Populasi Terjangkau.
+Pasien usia 40 - 59 tahun dengan diabetes melitus tipe II yang menjalani pengobatan di RSUP Sanglah Denpasar pada periode penelitian.
+
+### Sampel
+Pasien usia 49 - 59 tahun dengan diabetes melitus tipe II yang menjalani pengobatan di RSUP sanglah Denpasar pada periode penelitian yang memenuhi kriteria inklusi dan ekslusi.
+
+#### Kriteria Inklusi
+* Pasien usia 40-59 tahun
+
+##### Kriteria Tambahan untuk Kasus DM
+* Pasien menderita Diabetes Melitus tipe II lebih dari atau sama dengan 5 tahun.
+
+#### Kriteria Ekslusi
+* Pasien obesitas (BMI $\geq$ 30 kg/m2)
+* Kelainan hormonal yang mempengaruhi 
+
+### Perkiraan Jumlah Sampel
+Perkiraan jumlah sampel minimal pada penelitian dihitung mengunakan rumus perbandingan proporsi pada 2 populasi.
+
+
+$\alpha$ = 0,05 
+
+$\beta$ = 0,20
+
+P1 =
+
+P2 = 
+
+```{r}
+
+```
+
+## Variabel Penelitian
+### Klasifikasi Variabel
+#### Variabel Bebas/Independen
+* Diabetes Melitus tipe II dan Kontrol
+
+#### Variabel Tergantung/Dependen
+* Trabecular Bone Score (TBS)
+* Bone Mineral Density (BMD) 
+
+#### Variabel Perancu/*Confounding Variabel*
+* Jenis Kelamin
+* Fungsi Ginjal
+* Fungsi Hati
+* OAD saja vs Insulin ($\pm$ OAD)
+
+#### Variabel Kontrol
+* Usia: 40-59 tahun
+* Klasifikasi diabetes: DM tipe II
+* Durasi Menderita DM: lebih dari atau sama dengan 5 tahun.
+* Tanpa komorbid penyakit endokrin yang mempengaruhi metabolisme tulang
+
+
+### Definisi Operasional
+
+
+## Alat dan Bahan
+
+## Prosedur Penelitian
+
+## Analisis Data
+
+
+## Perkiraan Biaya
+
